@@ -46,8 +46,28 @@ public class EmpWage
 	}
 	public static void main(String[] args)
 	{
+		Scanner sc=new Scanner(System.in);
 		Attendance();
 		dailyWage();
 		partTimeWage();
+		if(Emp=="Present")
+		{
+			System.out.println("1.Daily Employee wage ");
+			System.out.println("2. Part Time Employee wage ");
+			System.out.println("Enter your choice: ");
+			int choice=sc.nextInt();
+			switch(choice)
+    		{
+    			case 1:
+    				dailyWage();
+    				break;
+    				
+    			case 2:
+    				partTimeWage();
+    				break;
+    			default:
+    				break;
+    		}	
+		}
 	}
 }
