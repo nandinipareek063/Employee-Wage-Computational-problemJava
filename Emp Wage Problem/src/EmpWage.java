@@ -1,5 +1,5 @@
 import java.util.*;
-public class UC1 {
+public class EmpWage {
 	public static void Attendance()
 	{
 		int Employee=(int)(Math.random()*2);
