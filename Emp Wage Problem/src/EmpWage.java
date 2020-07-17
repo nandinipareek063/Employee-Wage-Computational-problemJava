@@ -7,6 +7,8 @@ public class EmpWage
 	static int wagePerHour=20;
 	static int fullDayHour=8;
 	static int partTime=4;
+	static int empWage;
+	static int totalWage;
 	public static void Attendance()
 	{
 		int Employee=(int)(Math.random()*2);
@@ -24,6 +26,7 @@ public class EmpWage
 		{
 			 dailyEmpWage=(wagePerHour*fullDayHour);
 			 System.out.println("Daily Wage of Employee is :" +dailyEmpWage);
+			 empWage=dailyEmpWage;
 		}
 		else
 		{
@@ -37,6 +40,7 @@ public class EmpWage
 		{
 			 partTimeEmpWage=(wagePerHour*partTime);
 			 System.out.println("Part time Wage of Employee is :" +partTimeEmpWage);
+			 empWage=partTimeEmpWage;
 		}
 		else
 		{
@@ -44,6 +48,24 @@ public class EmpWage
 			System.out.println("Part time wage of Employee is :"+ partTimeEmpWage);
 		}
 	}
+	public static void check()
+	{
+		int available=(int)(Math.random()*3);
+		if(available==1)
+		{
+			dailyWage();
+			empWage=dailyEmpWage;
+		}
+		else if(available==2)
+		{
+			partTimeWage();
+			empWage=partTimeEmpWage;
+		}
+		else
+			empWage=0;
+		
+	}
+
 	public static void main(String[] args)
 	{
 		Scanner sc=new Scanner(System.in);
@@ -68,6 +90,14 @@ public class EmpWage
     			default:
     				break;
     		}	
+			
+			System.out.println("Total wage: ");
+			for(int i=1;i<=20;i++)
+			{
+				check();
+				totalWage+=empWage;
+			}
+			System.out.println("Total wage for a month: "+totalWage);
 		}
 	}
 }
