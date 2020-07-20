@@ -1,6 +1,6 @@
 import java.util.*;
 public class EmpWage
-{	
+{
 	static String Emp;
 	static int dailyEmpWage;
 	static int partTimeEmpWage;
@@ -12,7 +12,8 @@ public class EmpWage
 	static int totalWage;
 	static int workingDays=0;
 	static int totalHours=0;
-	public static void Attendance()
+	
+	public static void check()
 	{
 		int Employee=(int)(Math.random()*2);
 		if(Employee==1)
@@ -22,44 +23,7 @@ public class EmpWage
 		}
 		else
 			System.out.println("Absent");
-	}
-	public static void check()
-	{
-		int available=(int)(Math.random()*3);
-		if(available==1)
-		{
-			if(Emp=="Present")
-			{	 
-				 
-				 dailyEmpWage=(wagePerHour*fullDayHour);
-				 System.out.println("Daily Wage of Employee is :" +dailyEmpWage);
-				 empWage=dailyEmpWage;
-			}
-			else
-			{
-				dailyEmpWage=0;
-				System.out.println("Daily wage of Employee is :"+ dailyEmpWage);
-			}
-			empWage=dailyEmpWage;
-		}
-		else if(available==2)
-		{
-			if(Emp=="Present")
-			{	
-				 partTimeEmpWage=(wagePerHour*partTime);
-				 System.out.println("Part time Wage of Employee is :" +partTimeEmpWage);
-				 empWage=partTimeEmpWage;
-			}
-			else
-			{
-				partTimeEmpWage=0;
-				System.out.println("Part time wage of Employee is :"+ partTimeEmpWage);
-			}
-			empWage=partTimeEmpWage;
-		}
-		else
-			System.out.println("Absent");
-			empWage=0;
+		
 		
 	}
 	public static void empComputation(){
@@ -93,12 +57,59 @@ public class EmpWage
 		}
 	}
 
+	private static final int fullTime = 1;
+	private static final int partTime1 = 2;
+
+	private static String company;
+	private static int dayPerMonth;
+
+	EmpWage( String company, int wagePerHour, int fullDayHour, int totalHours, int dayPerMonth) {
+		this.company=company;
+		this.wagePerHour = wagePerHour;
+		this.fullDayHour = fullDayHour;
+		this.totalHours = totalHours;
+		this.dayPerMonth = dayPerMonth;
+	}
+
+	private static void employeeMonthlyWage() {
+		
+		int dailyWage = 0;
+		int dailyHours;
+		int monthlyWage = 0;
+		int hours = 0;
+		int day = 0;
+		
+		while ( hours <= totalHours && day < dayPerMonth )
+		{
+			int empCheck = (int) Math.floor(Math.random() * 10) % 3;
+			switch (empCheck) {
+				case fullTime:
+					dailyHours = fullDayHour;
+					break;
+				case partTime1:
+					dailyHours = partTime;
+					break;
+				default:
+					dailyHours = 0;
+					break;
+			}
+			
+			day++;
+			dailyWage = wagePerHour * dailyHours;
+			monthlyWage += dailyWage;
+			System.out.println("Day: "+day+" empWage:"+dailyWage);
+      }
+		System.out.println("Monthly Wage of "+company+" is: "+monthlyWage);
+	}
+
 	public static void main(String[] args)
 	{
-		
-		Attendance();
-		check();
-		EmpWage obj=new EmpWage();
-		obj.empComputation();
+		//check();
+		//EmpWage.empComputation();
+		EmpWage company1 = new EmpWage("Jio", 30, 8, 120, 20);
+		company1.employeeMonthlyWage();
+		EmpWage company2 = new EmpWage("infosys", 20, 8, 100, 20);
+		company2.employeeMonthlyWage();  
 	}
+
 }
