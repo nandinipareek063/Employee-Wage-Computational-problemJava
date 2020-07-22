@@ -1,7 +1,5 @@
 import java.util.Random;
-
-
-public class EmpWage {
+public class EmpWage implements ICompany{
 
         public static final int isPartTime=1;
         public static final int isFullTime=2;
@@ -13,7 +11,7 @@ public class EmpWage {
         companyEmpWageArray = new CompanyEmpWage[5];
         }
 
-         private void addCompanyEmpWage(String company, int empRatePerHr, int
+         public void addCompanyEmpWage(String company, int empRatePerHr, int
                                         numWorkingDays, int maxHrInMonth){
 
         companyEmpWageArray[numOfCompany] = new CompanyEmpWage(company, empRatePerHr, numWorkingDays, maxHrInMonth);
@@ -21,7 +19,7 @@ public class EmpWage {
        }
 
 
-        private void employeeWageCompute(){
+        public void employeeWageCompute(){
         for(int i=0; i<numOfCompany; i++){
             companyEmpWageArray[i].setTotalEmpWage(this.employeeWageComputation(companyEmpWageArray[i]));
         System.out.println(companyEmpWageArray[i]);
@@ -73,11 +71,10 @@ public class EmpWage {
 
 
         public static void main(String args[]){
-
-        EmpWage empWageBuilder = new EmpWage();
-        empWageBuilder.addCompanyEmpWage("Dmart",10,10,100);
-        empWageBuilder.addCompanyEmpWage("Big bazar",20,20,80);
-        empWageBuilder.employeeWageCompute();
+        	ICompany I1=new EmpWage();
+        I1.addCompanyEmpWage("Dmart",10,10,100);
+        I1.addCompanyEmpWage("Big bazar",20,20,80);
+        I1.employeeWageCompute();
 
         }
 
